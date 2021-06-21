@@ -1,4 +1,4 @@
-FROM node:13.3-alpine AS BUILD_IMAGE
+FROM node:lts-alpine AS BUILD_IMAGE
 
 WORKDIR /usr/src/app
 
@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-FROM node:13.3-alpine
+FROM node:lts-alpine
 
 WORKDIR /usr/src/app
 
