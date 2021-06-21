@@ -1,5 +1,5 @@
 //include the model (aka DB connection)
-var db = require('../models/dbconnection'); 
+var db = require('../models/dbConnection'); 
 
 //create class
 var Strain = {
