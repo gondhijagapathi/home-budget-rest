@@ -10,7 +10,7 @@ app.listen(port);
 
 process.on('uncaughtException', function (err) {
   console.error(err);
-  console.log("Node NOT Exiting...");
+  console.log("Node NOT Exiting....");
 });
 
 console.log('Home-budget RESTful API server started on: ' + port);
