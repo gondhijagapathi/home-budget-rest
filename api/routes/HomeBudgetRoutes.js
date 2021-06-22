@@ -9,8 +9,8 @@ module.exports = function(app) {
 
   app.route('/categories').get(controll.getAllCategories).post(controll.postCategories);
 
-  app.route('/subCategories').get(controll.getAllSubCategories).post(controll.postSubCategories);
+  app.route('/subCategories/:id').get(controll.getAllSubCategories).post(controll.postSubCategories);
 
-  app.route('/items').get(controll.getAllItems).post(controll.postItems);
+  app.route('/items/:id').get(controll.getAllItems).post(controll.postItems);
     
 };

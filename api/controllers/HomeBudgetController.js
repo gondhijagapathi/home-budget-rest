@@ -72,8 +72,16 @@ getAllCategories: function (req, res) {
     });
 },
 getAllSubCategories: function (req, res) {
+    let id = req.params.id;
+    let query = 'SELECT * from subCategory';
 
-    var results = db.query('SELECT * from subCategory', function (error, results, fields) {
+    if(id != "0")
+    {
+        query='SELECT * from subCategory WHERE categoryId = ?';
+    }
+    var results = db.query(query, 
+    [id] 
+    ,function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
@@ -94,8 +102,16 @@ getAllSubCategories: function (req, res) {
     });
 },
 getAllItems: function (req, res) {
+    let id = req.params.id;
+    let query = 'SELECT * from items';
 
-    var results = db.query('SELECT * from items', function (error, results, fields) {
+    if(id != "0")
+    {
+        query='SELECT * from items WHERE subCategoryId = ?';
+    }
+    var results = db.query(query, 
+    [id] ,
+    function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
