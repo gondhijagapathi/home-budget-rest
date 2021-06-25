@@ -12,5 +12,9 @@ module.exports = function(app) {
   app.route('/subCategories/:id').get(controll.getAllSubCategories).post(controll.postSubCategories);
 
   app.route('/items/:id').get(controll.getAllItems).post(controll.postItems);
+
+  app.route('/measures').get(controll.getAllMeasures);
+
+  app.route('/spendings').post(controll.postSpendings);
     
 };

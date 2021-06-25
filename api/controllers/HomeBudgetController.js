@@ -131,6 +131,27 @@ getAllItems: function (req, res) {
         res.json(apiResult);
     });
 },
+getAllMeasures: function (req, res) {
+    var results = db.query('SELECT * from measure', function (error, results, fields) {
+        //if error, print blank results
+        if (error) {
+            var apiResult = {};
+            apiResult= [];
+            res.json(apiResult);
+        }
+        
+        //make results 
+        var resultJson = JSON.stringify(results);
+        resultJson = JSON.parse(resultJson);
+        var apiResult = {};
+        
+        //add our JSON results to the data table
+        apiResult = resultJson;
+        
+        //send JSON to Express
+        res.json(apiResult);
+    });
+},
 postCategories: function (req, res) {
 
     let jsonBody = req.body;
@@ -255,6 +276,30 @@ postItems: function (req, res) {
         jsonBody.itemName,
         jsonBody.subCategoryId
     ], function (error, results, fields) {
+        //if error, print blank results
+        if (error) {
+            var apiResult = {};
+            apiResult= {'error':error};
+            res.status(500);
+            res.json(apiResult);
+        }
+        
+        //make results 
+        var resultJson = JSON.stringify(results);
+        resultJson = JSON.parse(resultJson);
+        var apiResult = {};
+        
+        //add our JSON results to the data table
+        apiResult = resultJson;
+        
+        //send JSON to Express
+        res.json(apiResult);
+    });
+},
+postSpendings: function (req, res) {
+
+    let jsonBody = req.body;
+    var results = db.query(`INSERT INTO spendings VALUES ?`, [jsonBody.data], function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
