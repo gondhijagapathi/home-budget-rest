@@ -9,8 +9,7 @@ routes(app); //register the route
 app.listen(port);
 
 process.on('uncaughtException', function (err) {
-  console.error(err);
-  console.log("Node NOT Exiting....");
+  console.log('error occured');
 });
 
 console.log('Home-budget RESTful API server started on: ' + port);
