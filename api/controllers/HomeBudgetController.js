@@ -299,7 +299,7 @@ postItems: function (req, res) {
 postSpendings: function (req, res) {
 
     let jsonBody = req.body;
-    var results = db.query(`INSERT INTO spendings VALUES (?)`, [jsonBody.data], function (error, results, fields) {
+    var results = db.query(`INSERT INTO spendings VALUES ?`, [jsonBody.data], function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
