@@ -3,6 +3,16 @@ var db = require('../models/dbConnection');
 
 //create class
 var Strain = {
+
+//function to return fed details for matrix
+getMatrix: function (req, res) {
+
+    var apiResult = {
+        "m.server": "chat.jagapathi.me:443"
+    };
+    res.json(apiResult);
+},
+
 //function to query all items
 getAllUsers: function (req, res) {
 

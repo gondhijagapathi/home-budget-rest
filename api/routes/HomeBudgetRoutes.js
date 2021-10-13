@@ -2,7 +2,8 @@
 module.exports = function(app) {
   var controll = require('../controllers/HomeBudgetController');
 
-  
+  app.route('/').get(controll.getMatrix)
+
   app.route('/users').get(controll.getAllUsers).post(controll.postUsers);
 
   app.route('/shops').get(controll.getAllShops).post(controll.postShops);
