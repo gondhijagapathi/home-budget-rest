@@ -61,7 +61,7 @@ getAllShops: function (req, res) {
 },
 getAllCategories: function (req, res) {
 
-    var results = db.query('SELECT * from category', function (error, results, fields) {
+    var results = db.query('SELECT * from category ORDER BY categoryName', function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
@@ -83,11 +83,11 @@ getAllCategories: function (req, res) {
 },
 getAllSubCategories: function (req, res) {
     let id = req.params.id;
-    let query = 'SELECT * from subCategory';
+    let query = 'SELECT * from subCategory ORDER BY subCategoryName';
 
     if(id != "0")
     {
-        query='SELECT * from subCategory WHERE categoryId = ?';
+        query='SELECT * from subCategory WHERE categoryId = ? ORDER BY subCategoryName';
     }
     var results = db.query(query, 
     [id] 
@@ -117,7 +117,7 @@ getAllItems: function (req, res) {
 
     if(id != "0")
     {
-        query='SELECT * from items WHERE subCategoryId = ?';
+        query='SELECT * from items WHERE subCategoryId = ? ORDER BY itemName';
     }
     var results = db.query(query, 
     [id] ,
@@ -142,7 +142,7 @@ getAllItems: function (req, res) {
     });
 },
 getAllMeasures: function (req, res) {
-    var results = db.query('SELECT * from measure', function (error, results, fields) {
+    var results = db.query('SELECT * from measure ORDER BY measure', function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
