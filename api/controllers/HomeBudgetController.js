@@ -16,7 +16,7 @@ getMatrix: function (req, res) {
 //function to query all items
 getAllSpendings: function (req, res) {
 
-    var results = db.query('SELECT * from spendings ORDER BY dateOfSpending DESC LIMIT 10', function (error, results, fields) {
+    var results = db.query('SELECT * from spendings LEFT JOIN items on spendings.itemId = items.itemId ORDER BY spendings.dateOfSpending DESC LIMIT 10', function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
