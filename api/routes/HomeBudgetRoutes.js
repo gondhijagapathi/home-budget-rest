@@ -16,6 +16,7 @@ module.exports = function(app) {
 
   app.route('/measures').get(controll.getAllMeasures);
 
-  app.route('/spendings').post(controll.postSpendings);
-    
+  app.route('/spendings').post(controll.postSpendings).get(controll.getAllSpendings);
+
+  app.route('/spendings/delete/:id').post(controll.deleteSpendings);
 };

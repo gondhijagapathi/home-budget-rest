@@ -14,6 +14,59 @@ getMatrix: function (req, res) {
 },
 
 //function to query all items
+getAllSpendings: function (req, res) {
+
+    var results = db.query('SELECT * from spendings ORDER BY dateOfSpending DESC LIMIT 10', function (error, results, fields) {
+        //if error, print blank results
+        if (error) {
+            var apiResult = {};
+            apiResult= [];
+            res.json(apiResult);
+        }
+        
+        //make results 
+        var resultJson = JSON.stringify(results);
+        resultJson = JSON.parse(resultJson);
+        var apiResult = {};
+        
+        //add our JSON results to the data table
+        apiResult = resultJson;
+        
+        //send JSON to Express
+        res.json(apiResult);
+    });
+},
+
+//function to query all items
+deleteSpendings: function (req, res) {
+    let id = req.params.id;
+    let query = 'DELETE from spendings where spendingId = ?';
+
+    var results = db.query(query, 
+    [id] 
+    ,function (error, results, fields) {
+        //if error, print blank results
+        if (error) {
+            var apiResult = {};
+            apiResult= {'error':error};
+            res.status(500);
+            res.json(apiResult);
+        }
+        
+        //make results 
+        var resultJson = JSON.stringify(results);
+        resultJson = JSON.parse(resultJson);
+        var apiResult = {};
+        
+        //add our JSON results to the data table
+        apiResult = resultJson;
+        
+        //send JSON to Express
+        res.json(apiResult);
+    });
+},
+
+//function to query all items
 getAllUsers: function (req, res) {
 
     var results = db.query('SELECT * from users', function (error, results, fields) {
