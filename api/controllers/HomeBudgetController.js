@@ -90,28 +90,6 @@ getAllUsers: function (req, res) {
     });
 },
 
-getAllShops: function (req, res) {
-
-    var results = db.query('SELECT * from shops', function (error, results, fields) {
-        //if error, print blank results
-        if (error) {
-            var apiResult = {};
-            apiResult= [];
-            res.json(apiResult);
-        }
-        
-        //make results 
-        var resultJson = JSON.stringify(results);
-        resultJson = JSON.parse(resultJson);
-        var apiResult = {};
-        
-        //add our JSON results to the data table
-        apiResult = resultJson;
-        
-        //send JSON to Express
-        res.json(apiResult);
-    });
-},
 getAllCategories: function (req, res) {
 
     var results = db.query('SELECT * from category ORDER BY categoryName', function (error, results, fields) {
@@ -145,57 +123,6 @@ getAllSubCategories: function (req, res) {
     var results = db.query(query, 
     [id] 
     ,function (error, results, fields) {
-        //if error, print blank results
-        if (error) {
-            var apiResult = {};
-            apiResult= [];
-            res.json(apiResult);
-        }
-        
-        //make results 
-        var resultJson = JSON.stringify(results);
-        resultJson = JSON.parse(resultJson);
-        var apiResult = {};
-        
-        //add our JSON results to the data table
-        apiResult = resultJson;
-        
-        //send JSON to Express
-        res.json(apiResult);
-    });
-},
-getAllItems: function (req, res) {
-    let id = req.params.id;
-    let query = 'SELECT * from items';
-
-    if(id != "0")
-    {
-        query='SELECT * from items WHERE subCategoryId = ? ORDER BY itemName';
-    }
-    var results = db.query(query, 
-    [id] ,
-    function (error, results, fields) {
-        //if error, print blank results
-        if (error) {
-            var apiResult = {};
-            apiResult= [];
-            res.json(apiResult);
-        }
-        
-        //make results 
-        var resultJson = JSON.stringify(results);
-        resultJson = JSON.parse(resultJson);
-        var apiResult = {};
-        
-        //add our JSON results to the data table
-        apiResult = resultJson;
-        
-        //send JSON to Express
-        res.json(apiResult);
-    });
-},
-getAllMeasures: function (req, res) {
-    var results = db.query('SELECT * from measure ORDER BY measure', function (error, results, fields) {
         //if error, print blank results
         if (error) {
             var apiResult = {};
@@ -273,34 +200,6 @@ postUsers: function (req, res) {
         res.json(apiResult);
     });
 },
-postShops: function (req, res) {
-
-    let jsonBody = req.body;
-    var results = db.query(`INSERT INTO shops VALUES (?, ?)`, 
-    [
-        '1234',
-        jsonBody.shopName
-    ], function (error, results, fields) {
-        //if error, print blank results
-        if (error) {
-            var apiResult = {};
-            apiResult= {'error':error};
-            res.status(500);
-            res.json(apiResult);
-        }
-        
-        //make results 
-        var resultJson = JSON.stringify(results);
-        resultJson = JSON.parse(resultJson);
-        var apiResult = {};
-        
-        //add our JSON results to the data table
-        apiResult = resultJson;
-        
-        //send JSON to Express
-        res.json(apiResult);
-    });
-},
 postSubCategories: function (req, res) {
 
     let jsonBody = req.body;
@@ -309,35 +208,6 @@ postSubCategories: function (req, res) {
         '1234',
         jsonBody.subCategoryName,
         jsonBody.categoryId
-    ], function (error, results, fields) {
-        //if error, print blank results
-        if (error) {
-            var apiResult = {};
-            apiResult= {'error':error};
-            res.status(500);
-            res.json(apiResult);
-        }
-        
-        //make results 
-        var resultJson = JSON.stringify(results);
-        resultJson = JSON.parse(resultJson);
-        var apiResult = {};
-        
-        //add our JSON results to the data table
-        apiResult = resultJson;
-        
-        //send JSON to Express
-        res.json(apiResult);
-    });
-},
-postItems: function (req, res) {
-
-    let jsonBody = req.body;
-    var results = db.query(`INSERT INTO items VALUES (?, ?, ?)`, 
-    [
-        '1234',
-        jsonBody.itemName,
-        jsonBody.subCategoryId
     ], function (error, results, fields) {
         //if error, print blank results
         if (error) {
